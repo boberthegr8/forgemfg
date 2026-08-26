@@ -18,31 +18,11 @@ jobs:
         with:
           node-version: '22'
       - name: Patch suite navigation
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('src/App.tsx')
-          s = p.read_text()
-          old = '''        <a href="https://forge-crm-six.vercel.app" className="suite-link"><span>CRM</span><ChevronRight size={14} /></a>
-        <a href="https://robquotes.vercel.app" className="suite-link"><span>Reader</span><ChevronRight size={14} /></a>
-        <a href="https://forge-scope.vercel.app" className="suite-link"><span>Scope</span><ChevronRight size={14} /></a>
-        <a href="https://lumber-estimator-ai.vercel.app" className="suite-link"><span>Quote / AI Quoter</span><ChevronRight size={14} /></a>
-        <div className="suite-link active"><span>Manufacturing</span><span className="active-dot" /></div>'''
-          new = '''        <a href="https://forge2-navy.vercel.app" className="suite-link"><span>Home</span><ChevronRight size={14} /></a>
-        <a href="https://forge-crm-six.vercel.app" className="suite-link"><span>CRM</span><ChevronRight size={14} /></a>
-        <a href="https://robquotes.vercel.app" className="suite-link"><span>Reader</span><ChevronRight size={14} /></a>
-        <a href="https://forge-scope.vercel.app" className="suite-link"><span>Scope</span><ChevronRight size={14} /></a>
-        <a href="https://lumber-estimator-ai.vercel.app" className="suite-link"><span>Quote / AI Quoter</span><ChevronRight size={14} /></a>
-        <div className="suite-link active"><span>Manufacturing</span><span className="active-dot" /></div>
-        <a href="https://forge-portal-pi.vercel.app" className="suite-link"><span>Portal</span><ChevronRight size={14} /></a>'''
-          if s.count(old) != 1:
-              raise SystemExit(f'Expected one Manufacturing suite nav block, found {s.count(old)}')
-          p.write_text(s.replace(old, new))
-          PY
-      - name: Install and build
-        run: |
-          npm ci
-          npm run build
+        run: python scripts/patch_suite_nav.py
+      - name: Install dependencies
+        run: npm ci
+      - name: Typecheck and build
+        run: npm run build
       - name: Commit suite navigation
         run: |
           git config user.name "github-actions[bot]"
