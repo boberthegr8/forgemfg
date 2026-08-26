@@ -140,11 +140,13 @@ export default function App() {
       <div className="mfg-location">{connected ? workspace.context?.locationName || 'Organization-wide' : 'Forge Core'} <span>⌄</span></div>
       <nav>
         <div className="nav-label">Forge Suite</div>
+        <a href="https://forge2-navy.vercel.app" className="suite-link"><span>Home</span><ChevronRight size={14} /></a>
         <a href="https://forge-crm-six.vercel.app" className="suite-link"><span>CRM</span><ChevronRight size={14} /></a>
         <a href="https://robquotes.vercel.app" className="suite-link"><span>Reader</span><ChevronRight size={14} /></a>
         <a href="https://forge-scope.vercel.app" className="suite-link"><span>Scope</span><ChevronRight size={14} /></a>
         <a href="https://lumber-estimator-ai.vercel.app" className="suite-link"><span>Quote / AI Quoter</span><ChevronRight size={14} /></a>
         <div className="suite-link active"><span>Manufacturing</span><span className="active-dot" /></div>
+        <a href="https://forge-portal-pi.vercel.app" className="suite-link"><span>Portal</span><ChevronRight size={14} /></a>
         <div className="nav-separator" />
         <div className="nav-label">Manufacturing</div>
         <button className="suite-link active"><span>Work Orders</span><span className="active-dot" /></button>
