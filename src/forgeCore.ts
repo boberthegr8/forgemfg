@@ -5,7 +5,7 @@ const FORGE_CORE_PUBLISHABLE_KEY = 'sb_publishable_SquKrj848EoO9NHZknVkSA_k8CKD7
 const DEFAULT_LOCATION_CODE = 'JK-MAIN';
 
 export const forgeCore = createClient(FORGE_CORE_URL, FORGE_CORE_PUBLISHABLE_KEY, {
-  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+  auth: (window as any).ForgeSuite?.auth || { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
 });
 
 export interface MfgContext {
@@ -78,7 +78,7 @@ export interface ManufacturingWorkspace {
 export async function sendMfgMagicLink(email: string) {
   const { error } = await forgeCore.auth.signInWithOtp({
     email: email.trim(),
-    options: { shouldCreateUser: false, emailRedirectTo: `${window.location.origin}${window.location.pathname}` }
+    options: { shouldCreateUser: false, emailRedirectTo: 'https://app.forgehub.dev/account.html' }
   });
   if (error) throw error;
 }
@@ -89,6 +89,7 @@ export async function signOutMfg() {
 }
 
 async function loadContext(): Promise<MfgContext | null> {
+  if ((window as any).ForgeSuite) await (window as any).ForgeSuite.connect(forgeCore);
   const { data: userData, error: userError } = await forgeCore.auth.getUser();
   if (userError) throw userError;
   const user = userData.user;
