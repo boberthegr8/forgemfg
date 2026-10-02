@@ -136,7 +136,7 @@ export default function App() {
 
   return <div className="mfg-shell">
     <aside className="mfg-sidebar">
-      <div className="mfg-brand"><div className="mfg-logo"><Factory size={20} /></div><div><strong>FORGE</strong><span>Manufacturing</span></div></div>
+      <a href="https://app.forgehub.dev/" aria-label="Back to Forge Home" title="Back to Forge Home" style={{color: 'inherit', textDecoration: 'none'}} className="mfg-brand"><div className="mfg-logo"><Factory size={20} /></div><div><strong>FORGE</strong><span>Manufacturing</span></div></a>
       <div className="mfg-location">{connected ? workspace.context?.locationName || 'Organization-wide' : 'Forge Core'} <span>⌄</span></div>
       <nav>
         <div className="nav-label">Forge Suite</div>
