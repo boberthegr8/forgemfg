@@ -148,6 +148,7 @@ export default function App() {
         <div className="suite-link active"><span>Manufacturing</span><span className="active-dot" /></div>
         <a href="https://portal.forgehub.dev" className="suite-link"><span>Portal</span><ChevronRight size={14} /></a>
         <a href="https://frame.forgehub.dev" className="suite-link"><span>Frame · 3D Takeoff</span><ChevronRight size={14} /></a>
+        <a href="https://todo.forgehub.dev" className="suite-link"><span>To Do</span><ChevronRight size={14} /></a>
         <div className="nav-separator" />
         <div className="nav-label">Manufacturing</div>
         <button className="suite-link active"><span>Work Orders</span><span className="active-dot" /></button>
